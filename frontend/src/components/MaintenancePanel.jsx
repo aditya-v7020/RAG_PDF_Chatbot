@@ -1,0 +1,8 @@
+import { Download, Eraser, RotateCcw, SlidersHorizontal } from "lucide-react";
+import { useState } from "react";
+import { useApp } from "../context/AppContext.jsx";
+export default function MaintenancePanel() {
+  const { setup, messages, clearChat, resetAll, exportChatMarkdown } = useApp(); const [resetting, setResetting] = useState(false);
+  const reset = async () => { if (!window.confirm("Reset all indexed documents and clear the chat? This cannot be undone.")) return; setResetting(true); try { await resetAll(); } catch (error) { window.alert(`Reset failed: ${error.message}`); } finally { setResetting(false); } };
+  return <section className="mt-6 border-t border-slate-100 pt-5"><h3 className="flex items-center gap-2 text-sm font-bold text-slate-700"><SlidersHorizontal size={15} className="text-brand-600" /> Session tools</h3><div className="mt-3 grid grid-cols-2 gap-2"><button onClick={clearChat} className="flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2 py-2 text-xs font-semibold text-slate-600"><Eraser size={14} /> New chat</button><button onClick={reset} disabled={!setup.ready || resetting} className="flex items-center justify-center gap-1.5 rounded-lg border border-red-200 bg-white px-2 py-2 text-xs font-semibold text-red-600 disabled:opacity-40"><RotateCcw size={14} /> {resetting ? "Resetting…" : "Reset all"}</button></div>{messages.length > 0 && <button onClick={exportChatMarkdown} className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2 py-2 text-xs font-semibold text-slate-600"><Download size={14} /> Export conversation</button>}</section>;
+}

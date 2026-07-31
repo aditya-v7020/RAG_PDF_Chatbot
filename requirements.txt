@@ -1,0 +1,20 @@
+# Core app
+python-dotenv==1.2.2
+Pillow==12.1.1
+
+# API backend (serves the React frontend)
+fastapi==0.121.2
+uvicorn[standard]==0.38.0
+python-multipart==0.0.20
+
+# PDF parsing (text + embedded image extraction)
+PyMuPDF==1.28.0
+
+# RAG pipeline: Gemini LLM + Gemini embeddings + FAISS vector store
+langchain-core==1.4.9
+langchain-community==0.4.2
+langchain-google-genai==4.2.7
+faiss-cpu==1.14.3
+
+# Testing
+pytest==8.3.4
