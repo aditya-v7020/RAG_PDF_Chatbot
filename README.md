@@ -199,3 +199,21 @@ indexing, merging, retrieval, and error handling).
 ## License
 
 MIT — see `LICENSE`.
+
+# Step 1: 
+
+# Activate virtual environment (Windows)
+.\.venv\Scripts\activate
+# Install dependencies (if not already installed)
+pip install -r requirements.txt
+
+# Step 2: Run Backend Server (Terminal 1)
+uvicorn api_server:app --reload --port 8000
+
+# Step 3: Run Frontend React UI (Terminal 2)
+cd frontend
+npm install
+npm run dev
+
+# Website Link
+https://rag-pdf-chatbot-ew41.vercel.app/
